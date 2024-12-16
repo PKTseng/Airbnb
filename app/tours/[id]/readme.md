@@ -81,3 +81,26 @@ Next.js 的 Image 組件是對 HTML 的 `<img>` 標籤的優化封裝。使用 I
 - SEO 友好：正確設置可提高搜索引擎排名
 - 用戶體驗：防止布局偏移，提供更流暢的加載體驗
 - 節省帶寬：自動選擇最適合的圖片格式和大小
+
+讓我為您解釋 Next.js 中的 remotePatterns 設定。
+
+這個設定是關於圖片優化和安全性的重要部分。當您在 Next.js 中使用 `next/image` 組件來顯示外部（遠端）圖片時，需要明確告訴 Next.js 哪些外部網域是被允許的。這是一個安全機制，用來防止任意外部圖片的載入。
+
+在您的例子中：
+```javascript
+const url = 'https://www.course-api.com/images/tours/tour-1.jpeg'
+```
+您試圖從 `course-api.com` 載入圖片。如果沒有在 `next.config.mjs` 中設定 remotePatterns，Next.js 會拒絕載入這張圖片。
+
+設定的各個部分說明：
+- `protocol: 'https'` - 只允許通過 HTTPS 協議載入圖片
+- `hostname: 'www.course-api.com'` - 允許從這個網域載入圖片
+- `pathname: '/images/**'` - 允許存取該網域下 /images 路徑及其子路徑的圖片
+- `port: ''` - 不指定特定端口
+
+這樣的設定有幾個好處：
+1. 安全性 - 防止惡意圖片的載入
+2. 性能優化 - Next.js 可以對允許的圖片進行優化（如自動調整大小、格式轉換等）
+3. 清晰的圖片來源管理 - 明確知道專案中的圖片來自哪些來源
+
+相比之下，本地圖片（如您程式碼中的 `mapsImg`）不需要這樣的設定，因為它們已經在您的專案中且被認為是安全的。

@@ -1,4 +1,5 @@
-import React from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
 
 const url = 'https://www.course-api.com/react-tours-project'
 
@@ -21,9 +22,29 @@ async function ToursPAge() {
       <section>
         <h1 className='mb-4 text-3xl'>Tours</h1>
 
-        {data.map((tour) => {
-          return <h2 key={tour.id}>{tour.name}</h2>
-        })}
+        <div className='grid gap-8 md:grid-cols-2'>
+          {data.map((item) => {
+            return (
+              <Link
+                key={item.id}
+                href={`/tours/${item.id}`}
+                className='transition-all duration-300 hover:text-blue-500'
+              >
+                <div className='relative mb-2 h-48'>
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    fill
+                    priority
+                    className='rounded object-cover'
+                    sizes='(max-width:768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                  />
+                </div>
+                <h2>{item.name}</h2>
+              </Link>
+            )
+          })}
+        </div>
       </section>
     </>
   )
