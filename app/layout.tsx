@@ -13,11 +13,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <body className={roboto.className}>
         <Navbar />
 
-        <main className="max-w-3xl mx-auto py-10">{children}</main>
+        <main className='mx-auto max-w-3xl py-10'>{children}</main>
       </body>
     </html>
   )
