@@ -4,8 +4,8 @@ import React from 'react'
 function HomePage() {
   return (
     <div>
-      <h1 className="text-7xl text-Cyan-500">Home Page</h1>
-      <Link href="/about" className="text-xl text-blue-500 inline-block mt-8">
+      <h1 className='text-Cyan-500 text-7xl'>Home Page</h1>
+      <Link href='/about' className='mt-8 inline-block text-xl text-blue-500'>
         About
       </Link>
     </div>

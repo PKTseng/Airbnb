@@ -3,11 +3,10 @@ import React from 'react'
 
 function Navbar() {
   return (
-    <div className="max-w-3xl mx-auto px-4 flex gap-x-4">
-      <Link href="/">Home</Link>
-      <Link href="/info">info</Link>
-      <Link href="/info/contact">contact</Link>
-      <Link href="/about">about</Link>
+    <div className='mx-auto flex max-w-3xl gap-x-4 px-4'>
+      <Link href='/'>Home</Link>
+      <Link href='/counter'>counter</Link>
+      <Link href='/tours'>Tours</Link>
     </div>
   )
 }
