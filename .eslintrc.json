@@ -11,7 +11,19 @@
     "prettier/prettier": [
       "error",
       {
-        "endOfLine": "auto"
+        "printWidth": 120,
+        "endOfLine": "auto",
+        "bracketSameLine": false,
+        "singleQuote": true,
+        "jsxSingleQuote": true
+      }
+    ],
+    "max-len": [
+      "error",
+      {
+        "code": 120,
+        "ignorePattern": "^\\s*className=\\{`[^`]*`\\}",
+        "ignoreUrls": true
       }
     ],
     "semi": [
@@ -21,16 +33,6 @@
     "comma-dangle": [
       "error",
       "always-multiline"
-    ],
-    "max-len": [
-      "error",
-      {
-        "code": 120
-      }
-    ],
-    "quotes": [
-      "error",
-      "single"
     ]
   }
 }
