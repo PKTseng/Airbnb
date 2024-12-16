@@ -43,11 +43,11 @@ npm run dev
 const HomePage = () => {
   return (
     <div>
-      <h1 className='text-7xl'>HomePage</h1>
+      <h1 className="text-7xl">HomePage</h1>
     </div>
-  );
-};
-export default HomePage;
+  )
+}
+export default HomePage
 ```
 
 ## Create Pages in Next.js
@@ -63,11 +63,11 @@ app/about/page.tsx
 const AboutPage = () => {
   return (
     <div>
-      <h1 className='text-7xl'>AboutPage</h1>
+      <h1 className="text-7xl">AboutPage</h1>
     </div>
-  );
-};
-export default AboutPage;
+  )
+}
+export default AboutPage
 ```
 
 ## Link Component
@@ -77,18 +77,18 @@ export default AboutPage;
   home page
 
 ```tsx
-import Link from 'next/link';
+import Link from 'next/link'
 const HomePage = () => {
   return (
     <div>
-      <h1 className='text-7xl'>HomePage</h1>
-      <Link href='/about' className='text-xl text-blue-500 inline-block mt-8'>
+      <h1 className="text-7xl">HomePage</h1>
+      <Link href="/about" className="text-xl text-blue-500 inline-block mt-8">
         about page
       </Link>
     </div>
-  );
-};
-export default HomePage;
+  )
+}
+export default HomePage
 ```
 
 ## Nested Routes
@@ -98,9 +98,9 @@ export default HomePage;
 
 ```tsx
 function ContactPage() {
-  return <h1 className='text-7xl'>ContactPage</h1>;
+  return <h1 className="text-7xl">ContactPage</h1>
 }
-export default ContactPage;
+export default ContactPage
 ```
 
 ## CSS and Tailwind
@@ -120,21 +120,21 @@ export default ContactPage;
 - layouts in a route are nested by default. Each parent layout wraps child layouts below it using the React children prop.
 
 ```tsx
-import './globals.css';
+import './globals.css'
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
-    <html lang='en'>
+    <html lang="en">
       <body>
         <nav>hello there</nav>
         {children}
       </body>
     </html>
-  );
+  )
 }
 ```
 
@@ -144,32 +144,32 @@ export default function RootLayout({
 - render in layout.tsx
 
 ```tsx
-import Link from 'next/link';
+import Link from 'next/link'
 
 function Navbar() {
   return (
-    <nav className='max-w-3xl mx-auto py-4 flex gap-x-4'>
-      <Link href='/'>Home</Link>
-      <Link href='/counter'>Counter</Link>
-      <Link href='/tours'>Tours</Link>
-      <Link href='/actions'>Actions</Link>
+    <nav className="max-w-3xl mx-auto py-4 flex gap-x-4">
+      <Link href="/">Home</Link>
+      <Link href="/counter">Counter</Link>
+      <Link href="/tours">Tours</Link>
+      <Link href="/actions">Actions</Link>
     </nav>
-  );
+  )
 }
-export default Navbar;
+export default Navbar
 ```
 
 ```tsx
-import Navbar from '@/components/Navbar';
+import Navbar from '@/components/Navbar'
 
 return (
-  <html lang='en'>
+  <html lang="en">
     <body className={inter.className}>
       <Navbar />
-      <main className='max-w-3xl mx-auto py-10'>{children}</main>
+      <main className="max-w-3xl mx-auto py-10">{children}</main>
     </body>
   </html>
-);
+)
 ```
 
 ## Fonts - Google Fonts
@@ -177,24 +177,24 @@ return (
 Automatically self-host any Google Font. Fonts are included in the deployment and served from the same domain as your deployment. No requests are sent to Google by the browser.
 
 ```tsx
-import './globals.css';
-import { Inter } from 'next/font/google';
+import './globals.css'
+import { Inter } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'] })
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
-    <html lang='en'>
+    <html lang="en">
       <body className={inter.className}>
         <nav>hello there</nav>
         {children}
       </body>
     </html>
-  );
+  )
 }
 ```
 
@@ -203,13 +203,13 @@ export default function RootLayout({
 Next.js has a Metadata API that can be used to define your application metadata (e.g. meta and link tags inside your HTML head element) for improved SEO and web shareability.To define static metadata, export a Metadata object from a layout.tsx or page.tsx file.
 
 ```tsx
-import type { Metadata } from 'next';
+import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Next.js Project',
   description: 'A Next.js project with TypeScript and TailwindCSS.',
   keywords: 'Next.js, Typescript, TailwindCSS',
-};
+}
 ```
 
 ## Server Components VS Client Components
@@ -249,24 +249,21 @@ Benefits :
 - create counter page and setup basic counter
 
 ```tsx
-'use client';
-import { useState } from 'react';
+'use client'
+import { useState } from 'react'
 
 function Counter() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(0)
   return (
-    <div className='flex flex-col items-center w-[100px]'>
-      <p className='text-5xl font-bold'>{count}</p>
-      <button
-        onClick={() => setCount(count + 1)}
-        className='bg-blue-500 rounded-md text-white px-4 py-2 mt-4'
-      >
+    <div className="flex flex-col items-center w-[100px]">
+      <p className="text-5xl font-bold">{count}</p>
+      <button onClick={() => setCount(count + 1)} className="bg-blue-500 rounded-md text-white px-4 py-2 mt-4">
         Increment
       </button>
     </div>
-  );
+  )
 }
-export default Counter;
+export default Counter
 ```
 
 ## Challenge - Refactor
@@ -275,17 +272,17 @@ export default Counter;
 - now page can be server component
 
 ```tsx
-import Counter from '@/components/Counter';
+import Counter from '@/components/Counter'
 
 function CounterPage() {
   return (
     <section>
-      <h1 className='text-6xl mb-16'>Page Content</h1>
+      <h1 className="text-6xl mb-16">Page Content</h1>
       <Counter />
     </section>
-  );
+  )
 }
-export default CounterPage;
+export default CounterPage
 ```
 
 ## Fetch Data in Server Components
@@ -296,31 +293,31 @@ export default CounterPage;
 - Next.tsx extends the native Web fetch() API to allow each request on the server to set its own persistent caching semantics.
 
 ```tsx
-const url = 'https://www.course-api.com/react-tours-project';
+const url = 'https://www.course-api.com/react-tours-project'
 
 type Tour = {
-  id: string;
-  name: string;
-  info: string;
-  image: string;
-  price: string;
-};
+  id: string
+  name: string
+  info: string
+  image: string
+  price: string
+}
 
 async function ToursPage() {
-  const response = await fetch(url);
-  const data: Tour[] = await response.json();
-  console.log(data);
+  const response = await fetch(url)
+  const data: Tour[] = await response.json()
+  console.log(data)
   return (
     <section>
-      <h1 className='text-3xl mb-4'>Tours</h1>
+      <h1 className="text-3xl mb-4">Tours</h1>
 
       {data.map((tour) => {
-        return <h2 key={tour.id}>{tour.name}</h2>;
+        return <h2 key={tour.id}>{tour.name}</h2>
       })}
     </section>
-  );
+  )
 }
-export default ToursPage;
+export default ToursPage
 ```
 
 ## Refactor and Delay
@@ -329,14 +326,14 @@ export default ToursPage;
 
 ```tsx
 const fetchTours = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
-  const response = await fetch(url);
-  const data: Tour[] = await response.json();
-  return data;
-};
+  await new Promise((resolve) => setTimeout(resolve, 3000))
+  const response = await fetch(url)
+  const data: Tour[] = await response.json()
+  return data
+}
 
 async function ToursPage() {
-  const data = await fetchTours();
+  const data = await fetchTours()
 }
 ```
 
@@ -347,11 +344,11 @@ The special file loading.js helps you create meaningful Loading UI with React Su
 - tours/loading.tsx
 
 ```tsx
-'use client';
+'use client'
 const loading = () => {
-  return <span className='text-xl capitalize'>loading tours...</span>;
-};
-export default loading;
+  return <span className="text-xl capitalize">loading tours...</span>
+}
+export default loading
 ```
 
 ## Error Component
@@ -362,11 +359,11 @@ The error.tsx file convention allows you to gracefully handle unexpected runtime
 - 'use client'
 
 ```js
-'use client';
+'use client'
 const error = () => {
-  return <div>there was an error...</div>;
-};
-export default error;
+  return <div>there was an error...</div>
+}
+export default error
 ```
 
 ## Nested Layouts
@@ -415,21 +412,17 @@ export default page;
 ```tsx
 return (
   <section>
-    <h1 className='text-3xl mb-4'>Tours</h1>
+    <h1 className="text-3xl mb-4">Tours</h1>
 
     {data.map((tour) => {
       return (
-        <Link
-          key={tour.id}
-          href={`/tours/${tour.id}`}
-          className='hover:text-blue-500'
-        >
+        <Link key={tour.id} href={`/tours/${tour.id}`} className="hover:text-blue-500">
           <h2>{tour.name}</h2>
         </Link>
-      );
+      )
     })}
   </section>
-);
+)
 ```
 
 ## Next Image Component
@@ -451,30 +444,24 @@ The Next.js Image component extends the HTML <img> element with features for aut
   When true, the image will be considered high priority and preload.
 
 ```tsx
-import mapsImg from '@/images/maps.jpg';
-import Image from 'next/image';
-const url = 'https://www.course-api.com/images/tours/tour-1.jpeg';
+import mapsImg from '@/images/maps.jpg'
+import Image from 'next/image'
+const url = 'https://www.course-api.com/images/tours/tour-1.jpeg'
 
 const page = async ({ params }: { params: { id: string } }) => {
   return (
     <div>
-      <h1 className='text-4xl'>ID : {params.id}</h1>
-      <section className='flex gap-x-4 mt-4'>
+      <h1 className="text-4xl">ID : {params.id}</h1>
+      <section className="flex gap-x-4 mt-4">
         <div>
-          <Image
-            src={mapsImg}
-            alt='maps'
-            width={192}
-            height={192}
-            className='w-48 h-48 object-cover rounded'
-          />
+          <Image src={mapsImg} alt="maps" width={192} height={192} className="w-48 h-48 object-cover rounded" />
           <h2>local image</h2>
         </div>
       </section>
     </div>
-  );
-};
-export default page;
+  )
+}
+export default page
 ```
 
 ## Remote Images
@@ -486,41 +473,28 @@ export default page;
 - The width and height attributes are used to infer the correct aspect ratio of image and avoid layout shift from the image loading in. The width and height do not determine the rendered size of the image file.
 
 ```tsx
-import mapsImg from '@/images/maps.jpg';
-import Image from 'next/image';
-const url = 'https://www.course-api.com/images/tours/tour-1.jpeg';
+import mapsImg from '@/images/maps.jpg'
+import Image from 'next/image'
+const url = 'https://www.course-api.com/images/tours/tour-1.jpeg'
 
 const page = async ({ params }: { params: { id: string } }) => {
   return (
     <div>
-      <h1 className='text-4xl'>ID : {params.id}</h1>
-      <section className='flex gap-x-4 mt-4'>
+      <h1 className="text-4xl">ID : {params.id}</h1>
+      <section className="flex gap-x-4 mt-4">
         <div>
-          <Image
-            src={mapsImg}
-            alt='maps'
-            width={192}
-            height={192}
-            className='w-48 h-48 object-cover rounded'
-          />
+          <Image src={mapsImg} alt="maps" width={192} height={192} className="w-48 h-48 object-cover rounded" />
           <h2>local image</h2>
         </div>
         <div>
-          <Image
-            src={url}
-            alt='tour'
-            width={192}
-            height={192}
-            priority
-            className='w-48 h-48 object-cover rounded'
-          />
+          <Image src={url} alt="tour" width={192} height={192} priority className="w-48 h-48 object-cover rounded" />
           <h2>remote image</h2>
         </div>
       </section>
     </div>
-  );
-};
-export default page;
+  )
+}
+export default page
 ```
 
 ```mjs
@@ -536,9 +510,9 @@ const nextConfig = {
       },
     ],
   },
-};
+}
 
-export default nextConfig;
+export default nextConfig
 ```
 
 - To safely allow optimizing images, define a list of supported URL patterns in next.config.mjs. Be as specific as possible to prevent malicious usage.
@@ -562,31 +536,27 @@ tours.tsx
 
 ```js
 return (
-  <div className='grid md:grid-cols-2 gap-8'>
+  <div className="grid md:grid-cols-2 gap-8">
     {data.map((tour) => {
       return (
-        <Link
-          key={tour.id}
-          href={`/tours/${tour.id}`}
-          className='hover:text-blue-500'
-        >
-          <div className='relative h-48 mb-2'>
+        <Link key={tour.id} href={`/tours/${tour.id}`} className="hover:text-blue-500">
+          <div className="relative h-48 mb-2">
             <Image
               src={tour.image}
               alt={tour.name}
               fill
-              sizes='33vw'
+              sizes="33vw"
               // sizes='(max-width:768px) 100vw,(max-width:1200px) 50vw, 33vw'
               priority
-              className='object-cover rounded'
+              className="object-cover rounded"
             />
           </div>
           <h2>{tour.name}</h2>
         </Link>
-      );
+      )
     })}
   </div>
-);
+)
 ```
 
 ## More Routing
@@ -651,14 +621,14 @@ RCC - React Client Component
 ```tsx
 export default function ServerComponent() {
   async function myAction(formData) {
-    'use server';
+    'use server'
     // access input values with formData
     // formData.get('name')
     // mutate data (server)
     // revalidate cache
   }
 
-  return <form action={myAction}>...</form>;
+  return <form action={myAction}>...</form>
 }
 ```
 
@@ -668,7 +638,7 @@ export default function ServerComponent() {
 utils/actions.js
 
 ```tsx
-'use server';
+'use server'
 
 export async function myAction() {
   // ...
@@ -676,16 +646,16 @@ export async function myAction() {
 ```
 
 ```tsx
-'use client';
+'use client'
 
-import { myAction } from './actions';
+import { myAction } from './actions'
 
 export default function ClientComponent() {
   return (
     <form action={myAction}>
-      <button type='submit'>Add to Cart</button>
+      <button type="submit">Add to Cart</button>
     </form>
-  );
+  )
 }
 ```
 
@@ -694,8 +664,8 @@ export default function ClientComponent() {
 - create Form and UsersList in components
 
 ```tsx
-import Form from '@/components/Form';
-import UsersList from '@/components/UsersList';
+import Form from '@/components/Form'
+import UsersList from '@/components/UsersList'
 
 function ActionsPage() {
   return (
@@ -703,49 +673,36 @@ function ActionsPage() {
       <Form />
       <UsersList />
     </>
-  );
+  )
 }
-export default ActionsPage;
+export default ActionsPage
 ```
 
 ## Form - Setup
 
 ```tsx
 const createUser = async () => {
-  'use server';
-  console.log('creating user....');
-};
+  'use server'
+  console.log('creating user....')
+}
 
 function Form() {
   return (
     <form action={createUser} className={formStyle}>
-      <h2 className='text-2xl capitalize mb-4'>create user</h2>
-      <input
-        type='text'
-        name='firstName'
-        required
-        className={inputStyle}
-        defaultValue='peter'
-      />
-      <input
-        type='text'
-        name='lastName'
-        required
-        className={inputStyle}
-        defaultValue='smith'
-      />
-      <button type='submit' className={btnStyle}>
+      <h2 className="text-2xl capitalize mb-4">create user</h2>
+      <input type="text" name="firstName" required className={inputStyle} defaultValue="peter" />
+      <input type="text" name="lastName" required className={inputStyle} defaultValue="smith" />
+      <button type="submit" className={btnStyle}>
         submit
       </button>
     </form>
-  );
+  )
 }
-export default Form;
+export default Form
 
-const formStyle = 'max-w-lg flex flex-col gap-y-4  shadow rounded p-8';
-const inputStyle = 'border shadow rounded py-2 px-3 text-gray-700';
-const btnStyle =
-  'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded capitalize';
+const formStyle = 'max-w-lg flex flex-col gap-y-4  shadow rounded p-8'
+const inputStyle = 'border shadow rounded py-2 px-3 text-gray-700'
+const btnStyle = 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded capitalize'
 ```
 
 ## Actions File
@@ -755,29 +712,29 @@ const btnStyle =
 - import in Form
 
 ```ts
-'use server';
+'use server'
 
 export const createUser = async () => {
-  console.log('creating user....');
-};
+  console.log('creating user....')
+}
 ```
 
 ```tsx
-'use client';
+'use client'
 
-import { createUser } from '@/utils/actions';
+import { createUser } from '@/utils/actions'
 ```
 
 ## FormData
 
 ```ts
 export const createUser = async (formData: FormData) => {
-  const firstName = formData.get('firstName') as string;
-  const lastName = formData.get('lastName') as string;
-  const rawData = Object.fromEntries(formData);
-  console.log(rawData);
-  console.log({ firstName, lastName });
-};
+  const firstName = formData.get('firstName') as string
+  const lastName = formData.get('lastName') as string
+  const rawData = Object.fromEntries(formData)
+  console.log(rawData)
+  console.log({ firstName, lastName })
+}
 ```
 
 ## Save User
@@ -787,48 +744,48 @@ export const createUser = async (formData: FormData) => {
 - won't work on vercel (deployment)
 
 ```ts
-'use server';
+'use server'
 
-import { readFile, writeFile } from 'fs/promises';
+import { readFile, writeFile } from 'fs/promises'
 
 type User = {
-  id: string;
-  firstName: string;
-  lastName: string;
-};
+  id: string
+  firstName: string
+  lastName: string
+}
 
 export const createUser = async (formData: FormData) => {
-  const firstName = formData.get('firstName') as string;
-  const lastName = formData.get('lastName') as string;
-  const newUser: User = { firstName, lastName, id: Date.now().toString() };
-  await saveUser(newUser);
-};
+  const firstName = formData.get('firstName') as string
+  const lastName = formData.get('lastName') as string
+  const newUser: User = { firstName, lastName, id: Date.now().toString() }
+  await saveUser(newUser)
+}
 
 export const fetchUsers = async (): Promise<User[]> => {
-  const result = await readFile('users.json', { encoding: 'utf8' });
-  const users = result ? JSON.parse(result) : [];
-  return users;
-};
+  const result = await readFile('users.json', { encoding: 'utf8' })
+  const users = result ? JSON.parse(result) : []
+  return users
+}
 
 const saveUser = async (user: User) => {
-  const users = await fetchUsers();
-  users.push(user);
-  await writeFile('users.json', JSON.stringify(users));
-};
+  const users = await fetchUsers()
+  users.push(user)
+  await writeFile('users.json', JSON.stringify(users))
+}
 ```
 
 ## UsersList
 
 ```tsx
-import { fetchUsers } from '@/utils/actions';
+import { fetchUsers } from '@/utils/actions'
 async function UsersList() {
-  const users = await fetchUsers();
+  const users = await fetchUsers()
   return (
-    <div className='mt-4'>
+    <div className="mt-4">
       {users.length ? (
         <div>
           {users.map((user) => (
-            <h4 key={user.id} className='capitalize text-lg'>
+            <h4 key={user.id} className="capitalize text-lg">
               {user.firstName} {user.lastName}
             </h4>
           ))}
@@ -837,21 +794,21 @@ async function UsersList() {
         <p>No users found...</p>
       )}
     </div>
-  );
+  )
 }
-export default UsersList;
+export default UsersList
 ```
 
 ## RevalidatePath
 
 ```ts
-import { revalidatePath } from 'next/cache';
-import { redirect } from 'next/navigation';
+import { revalidatePath } from 'next/cache'
+import { redirect } from 'next/navigation'
 
 export const createUser = async (formData: FormData) => {
   //...
-  revalidatePath('/actions');
-};
+  revalidatePath('/actions')
+}
 ```
 
 - if the data is displayed in a different page
@@ -859,19 +816,19 @@ export const createUser = async (formData: FormData) => {
 ```ts
 export const createUser = async (formData: FormData) => {
   //...
-  redirect('/');
-};
+  redirect('/')
+}
 ```
 
 - don't "redirect" place inside "try" block
 
 ```tsx
 try {
-  await saveUser(newUser);
+  await saveUser(newUser)
   // will trigger error
-  redirect('/');
+  redirect('/')
 } catch (error) {
-  console.error(error);
+  console.error(error)
 }
 ```
 
@@ -890,16 +847,16 @@ try {
   It will not return status information for any <form> rendered in that same component or children components.
 
   ```tsx
-  import { useFormStatus, useFormState } from 'react-dom';
+  import { useFormStatus, useFormState } from 'react-dom'
 
   const SubmitButton = () => {
-    const { pending } = useFormStatus();
+    const { pending } = useFormStatus()
     return (
-      <button type='submit' className={btnStyle} disabled={pending}>
+      <button type="submit" className={btnStyle} disabled={pending}>
         {pending ? 'submitting...' : 'submit'}
       </button>
-    );
-  };
+    )
+  }
   ```
 
 ## Result
@@ -910,34 +867,34 @@ try {
 - a Hook that allows you to update state based on the result of a form action.
 
 ```tsx
-const [message, formAction] = useFormState(createUser, null);
+const [message, formAction] = useFormState(createUser, null)
 return (
   <form action={formAction} className={formStyle}>
     {message && <p>{message}</p>}
     ...
   </form>
-);
+)
 ```
 
 ```ts
 export const createUser = async (prevState: any, formData: FormData) => {
   // current state of the form
-  console.log(prevState);
+  console.log(prevState)
 
-  const firstName = formData.get('firstName') as string;
-  const lastName = formData.get('lastName') as string;
-  const newUser: User = { firstName, lastName, id: Date.now().toString() };
+  const firstName = formData.get('firstName') as string
+  const lastName = formData.get('lastName') as string
+  const newUser: User = { firstName, lastName, id: Date.now().toString() }
 
   try {
-    await saveUser(newUser);
-    revalidatePath('/actions');
+    await saveUser(newUser)
+    revalidatePath('/actions')
     // throw Error();
-    return 'user created successfully...';
+    return 'user created successfully...'
   } catch (error) {
-    console.error(error);
-    return 'failed to create user...';
+    console.error(error)
+    return 'failed to create user...'
   }
-};
+}
 ```
 
 ## Delete User
@@ -949,32 +906,26 @@ export const createUser = async (prevState: any, formData: FormData) => {
 function DeleteButton({ id }: { id: string }) {
   return (
     <form>
-      <button
-        type='submit'
-        className='bg-red-500 text-white text-xs rounded p-2'
-      >
+      <button type="submit" className="bg-red-500 text-white text-xs rounded p-2">
         delete
       </button>
     </form>
-  );
+  )
 }
-export default DeleteButton;
+export default DeleteButton
 ```
 
 ```tsx
-import { fetchUsers } from '@/utils/actions';
-import DeleteButton from './DeleteButton';
+import { fetchUsers } from '@/utils/actions'
+import DeleteButton from './DeleteButton'
 async function UsersList() {
-  const users = await fetchUsers();
+  const users = await fetchUsers()
   return (
-    <div className='mt-4'>
+    <div className="mt-4">
       {users.length ? (
-        <div className='max-w-lg'>
+        <div className="max-w-lg">
           {users.map((user) => (
-            <h4
-              key={user.id}
-              className='capitalize text-lg flex justify-between items-center mb-2'
-            >
+            <h4 key={user.id} className="capitalize text-lg flex justify-between items-center mb-2">
               {user.firstName} {user.lastName}
               <DeleteButton id={user.id} />
             </h4>
@@ -984,60 +935,54 @@ async function UsersList() {
         <p>No users found...</p>
       )}
     </div>
-  );
+  )
 }
-export default UsersList;
+export default UsersList
 ```
 
 ## Delete Action
 
 ```ts
 export const deleteUser = async (formData: FormData) => {
-  const id = formData.get('id') as string;
-  const users = await fetchUsers();
-  const updatedUsers = users.filter((user: User) => user.id !== id);
-  await writeFile('users.json', JSON.stringify(updatedUsers));
-  revalidatePath('/actions');
-};
+  const id = formData.get('id') as string
+  const users = await fetchUsers()
+  const updatedUsers = users.filter((user: User) => user.id !== id)
+  await writeFile('users.json', JSON.stringify(updatedUsers))
+  revalidatePath('/actions')
+}
 ```
 
 ```tsx
-import { deleteUser } from '@/utils/actions';
+import { deleteUser } from '@/utils/actions'
 
 function DeleteButton({ id }: { id: string }) {
   return (
     <form action={deleteUser}>
-      <input type='hidden' name='id' value={id} />
-      <button
-        type='submit'
-        className='bg-red-500 text-white text-xs rounded p-2'
-      >
+      <input type="hidden" name="id" value={id} />
+      <button type="submit" className="bg-red-500 text-white text-xs rounded p-2">
         delete
       </button>
     </form>
-  );
+  )
 }
-export default DeleteButton;
+export default DeleteButton
 ```
 
 ```tsx
-import { deleteUser, removeUser } from '@/utils/actions';
+import { deleteUser, removeUser } from '@/utils/actions'
 
 function DeleteButton({ id }: { id: string }) {
-  const removeUserWithId = removeUser.bind(null, id);
+  const removeUserWithId = removeUser.bind(null, id)
   return (
     <form action={removeUserWithId}>
-      <input type='hidden' name='name' value='shakeAndBake' />
-      <button
-        type='submit'
-        className='bg-red-500 text-white text-xs rounded p-2'
-      >
+      <input type="hidden" name="name" value="shakeAndBake" />
+      <button type="submit" className="bg-red-500 text-white text-xs rounded p-2">
         delete
       </button>
     </form>
-  );
+  )
 }
-export default DeleteButton;
+export default DeleteButton
 ```
 
 ## Bind Option
@@ -1048,14 +993,14 @@ export default DeleteButton;
 
 ```ts
 export const removeUser = async (id: string, formData: FormData) => {
-  const name = formData.get('name') as string;
-  console.log(name);
+  const name = formData.get('name') as string
+  console.log(name)
 
-  const users = await fetchUsers();
-  const updatedUsers = users.filter((user) => user.id !== id);
-  await writeFile('users.json', JSON.stringify(updatedUsers));
-  revalidatePath('/actions');
-};
+  const users = await fetchUsers()
+  const updatedUsers = users.filter((user) => user.id !== id)
+  await writeFile('users.json', JSON.stringify(updatedUsers))
+  revalidatePath('/actions')
+}
 ```
 
 ## Route Handlers
@@ -1076,46 +1021,46 @@ app/api/users/route.ts
 ```ts
 // the following HTTP methods are supported: GET, POST, PUT, PATCH, DELETE, HEAD, and OPTIONS. If an unsupported method is called, Next.js will return a 405 Method Not Allowed response.
 
-import { NextRequest, NextResponse } from 'next/server';
-import { fetchUsers, saveUser } from '@/utils/actions';
+import { NextRequest, NextResponse } from 'next/server'
+import { fetchUsers, saveUser } from '@/utils/actions'
 
 export const GET = async () => {
-  const users = await fetchUsers();
-  return Response.json({ users });
-};
+  const users = await fetchUsers()
+  return Response.json({ users })
+}
 
 export const POST = async (request: Request) => {
-  const user = await request.json();
-  const newUser = { ...user, id: Date.now().toString() };
-  await saveUser(newUser);
-  return Response.json({ msg: 'user created' });
-};
+  const user = await request.json()
+  const newUser = { ...user, id: Date.now().toString() }
+  await saveUser(newUser)
+  return Response.json({ msg: 'user created' })
+}
 ```
 
 ```ts
-import { fetchUsers, saveUser } from '@/utils/actions';
+import { fetchUsers, saveUser } from '@/utils/actions'
 
 export const GET = async (request: Request) => {
-  const { searchParams } = new URL(request.url);
-  const id = searchParams.get('id');
-  console.log(id);
+  const { searchParams } = new URL(request.url)
+  const id = searchParams.get('id')
+  console.log(id)
 
-  const users = await fetchUsers();
-  return Response.json({ users });
-};
+  const users = await fetchUsers()
+  return Response.json({ users })
+}
 ```
 
 ```ts
-import { fetchUsers, saveUser } from '@/utils/actions';
-import { NextRequest, NextResponse } from 'next/server';
+import { fetchUsers, saveUser } from '@/utils/actions'
+import { NextRequest, NextResponse } from 'next/server'
 
 export const GET = async (request: NextRequest) => {
-  console.log(request.url);
-  console.log(request.nextUrl.searchParams.get('id'));
+  console.log(request.url)
+  console.log(request.nextUrl.searchParams.get('id'))
 
-  const users = await fetchUsers();
-  return NextResponse.redirect(new URL('/', request.url));
-};
+  const users = await fetchUsers()
+  return NextResponse.redirect(new URL('/', request.url))
+}
 ```
 
 The URL constructor takes two arguments: url and base. If the url is a relative URL, then base is required. If url is an absolute URL, then base is ignored.
@@ -1137,26 +1082,26 @@ Middleware in Next.js is a piece of code that allows you to perform actions befo
 
 ```ts
 export function middleware(request) {
-  return Response.json({ msg: 'hello there' });
+  return Response.json({ msg: 'hello there' })
 }
 
 export const config = {
   matcher: '/about',
-};
+}
 ```
 
 ```ts
-import { NextResponse } from 'next/server';
+import { NextResponse } from 'next/server'
 
 // This function can be marked `async` if using `await` inside
 export function middleware(request) {
-  return NextResponse.redirect(new URL('/', request.url));
+  return NextResponse.redirect(new URL('/', request.url))
 }
 
 // See "Matching Paths" below to learn more
 export const config = {
   matcher: ['/about/:path*', '/tours/:path*'],
-};
+}
 ```
 
 ## Local Build
