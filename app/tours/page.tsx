@@ -26,8 +26,8 @@ async function ToursPAge() {
           {data.map((item) => {
             return (
               <Link
-                key={item.id}
                 href={`/tours/${item.id}`}
+                key={item.id}
                 className='transition-all duration-300 hover:text-blue-500'
               >
                 <div className='relative mb-2 h-48'>
@@ -37,7 +37,7 @@ async function ToursPAge() {
                     fill
                     priority
                     className='rounded object-cover'
-                    sizes='(max-width:768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                    sizes='(max-width:768px) 100vw , (max-width:1200px) 50vw, 33vw'
                   />
                 </div>
                 <h2>{item.name}</h2>

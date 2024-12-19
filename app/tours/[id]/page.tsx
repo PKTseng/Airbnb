@@ -21,7 +21,7 @@ function page({ params }: { params: { id: string } }) {
         <h2>local image</h2>
 
         <div>
-          <Image src={url} width={192} height={192} alt='tour' priority className='h-48 w-48 rounded object-cover' />
+          <Image src={url} alt='tour' priority width={192} height={192} className='h-48 w-48 rounded object-cover' />
         </div>
         <h2>remote image</h2>
       </section>
