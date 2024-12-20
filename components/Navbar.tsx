@@ -7,6 +7,7 @@ function Navbar() {
       <Link href='/'>Home</Link>
       <Link href='/counter'>counter</Link>
       <Link href='/tours'>Tours</Link>
+      <Link href='/action'>Action</Link>
     </div>
   )
 }
