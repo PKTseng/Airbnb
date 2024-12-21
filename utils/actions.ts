@@ -3,10 +3,10 @@
 export const createUser = async (formData: FormData) => {
   'use server'
 
-  const firstName = formData.get('firstName') as string
-  const lastName = formData.get('lastName') as string
+  const firstName = formData.get('firstName')
+  const lastName = formData.get('lastName')
+
   const rowData = Object.fromEntries(formData)
 
-  console.log(rowData)
-  console.log({ firstName, lastName })
+  console.log({ firstName, lastName, rowData })
 }
