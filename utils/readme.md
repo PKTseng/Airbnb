@@ -235,3 +235,42 @@ users[0].  // IDE 會自動提示 User 物件的所有屬性
 - 獲得更好的 IDE 支援
 
 這不會影響程式的實際執行，但會讓開發過程更安全、更有效率。
+
+## `revalidatePath` 是 Next.js 提供的一個功能，用於更新頁面快取。讓我解釋它的作用：
+
+1. **主要功能**：
+
+- 當資料變更時，通知 Next.js 重新生成（重新驗證）特定路徑的頁面
+- 確保使用者看到最新的資料，而不是快取的舊資料
+
+2. **使用場景**：
+
+```typescript
+export const createUser = async (formData: FormData) => {
+  // 1. 先創建新使用者
+  const newUser: User = {
+    firstName,
+    lastName,
+    id: Date.now().toString(),
+  }
+  await saveUser(newUser)
+
+  // 2. 告訴 Next.js 需要更新 '/actions' 頁面
+  revalidatePath('/actions')
+}
+```
+
+3. **為什麼需要它**：
+
+- Next.js 預設會快取頁面以提升效能
+- 當資料變更時（例如新增使用者），快取的頁面會顯示舊資料
+- 使用 `revalidatePath` 可以強制 Next.js 更新該頁面的內容
+
+4. **實際效果**：
+
+- 當新使用者被創建後
+- `/actions` 頁面會自動重新渲染
+- 使用者會立即看到包含新資料的更新頁面
+- 不需要手動重新整理頁面
+
+這在建立具有動態資料的網頁應用時特別重要，可以確保使用者總是看到最新的資料狀態。

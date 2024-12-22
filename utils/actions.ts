@@ -1,7 +1,7 @@
 'use server'
 
 import { readFile, writeFile } from 'fs/promises'
-
+import { revalidatePath } from 'next/cache'
 export interface User {
   id: string
   firstName: string
@@ -9,14 +9,15 @@ export interface User {
 }
 
 export const createUser = async (formData: FormData) => {
+  await new Promise((resolve) => setTimeout(resolve, 1500))
   const firstName = formData.get('firstName') as string
   const lastName = formData.get('lastName') as string
 
-  const rowData = Object.fromEntries(formData)
+  // const rowData = Object.fromEntries(formData)
   const newUser: User = { firstName, lastName, id: Date.now().toString() }
 
   saveUser(newUser)
-  console.log({ firstName, lastName, rowData })
+  revalidatePath('/actions')
 }
 
 export const fetchUser = async (): Promise<User[]> => {
