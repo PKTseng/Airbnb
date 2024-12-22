@@ -2,7 +2,7 @@
 
 import { readFile, writeFile } from 'fs/promises'
 
-interface User {
+export interface User {
   id: string
   firstName: string
   lastName: string
@@ -19,7 +19,7 @@ export const createUser = async (formData: FormData) => {
   console.log({ firstName, lastName, rowData })
 }
 
-const fetchUser = async () => {
+export const fetchUser = async (): Promise<User[]> => {
   const result = await readFile('user.json', { encoding: 'utf-8' })
   const user = result ? JSON.parse(result) : []
 

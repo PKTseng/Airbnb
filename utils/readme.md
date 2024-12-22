@@ -64,7 +64,7 @@ export const saveUser = async (user: User) => {
 3. `JSON.stringify()`：將 JavaScript 物件轉換成 JSON 字串
 4. `readFile/writeFile`：Node.js 的檔案讀寫函數
 
-這樣的設計讓我們可以：
+## 這樣的設計讓我們可以：
 
 - 永久保存使用者資料（存在檔案中）
 - 保持所有使用者資料的列表
@@ -171,3 +171,67 @@ users.push(user) // ✅ 正確！陣列有 push 方法
 - 符合程式的邏輯需求
 - 減少了錯誤處理的複雜度
 - 讓程式碼更容易維護和擴展
+
+## 加上 `Promise<User[]>` 是在定義函數的返回型別的好處：
+
+1. **型別安全性**：
+
+```typescript
+// 沒有定義返回型別時
+const fetchUser = async () => {
+  // TypeScript 只知道這個函數會返回一個 Promise
+  // 但不知道 Promise 解析後會是什麼型別
+}
+
+// 定義返回型別後
+const fetchUser = async (): Promise<User[]> => {
+  // TypeScript 現在知道這個函數會返回一個 Promise
+  // 且 Promise 解析後會是 User[] (使用者陣列)
+}
+```
+
+2. **更好的開發體驗**：
+
+```typescript
+// 使用這個函數時
+const users = await fetchUser()
+users.map((user) => {
+  // 因為有定義返回型別，TypeScript 知道 user 物件有什麼屬性
+  console.log(user.firstName) // ✅ TypeScript 知道有 firstName 屬性
+  console.log(user.age) // ❌ TypeScript 會提示錯誤，因為 User 介面中沒有 age 屬性
+})
+```
+
+3. **錯誤預防**：
+
+```typescript
+const fetchUser = async (): Promise<User[]> => {
+  const result = await readFile('user.json', { encoding: 'utf-8' })
+  const user = result ? JSON.parse(result) : {} // ❌ TypeScript 會提示錯誤
+  // 因為我們承諾返回 User[]，但這裡可能返回一個物件
+  return user
+}
+```
+
+4. **程式碼文件化**：
+
+- 其他開發者可以直接看到這個函數預期返回什麼型別的資料
+- 不需要查看實作細節就知道如何使用這個函數
+
+5. **IDE 支援**：
+
+```typescript
+const users = await fetchUser()
+users.  // IDE 會自動提示陣列的所有可用方法
+users[0].  // IDE 會自動提示 User 物件的所有屬性
+```
+
+簡單來說，加上 `Promise<User[]>` 的主要差別是：
+
+- 提供更好的型別檢查
+- 改善開發體驗
+- 預防可能的錯誤
+- 提供更清晰的程式碼文件
+- 獲得更好的 IDE 支援
+
+這不會影響程式的實際執行，但會讓開發過程更安全、更有效率。

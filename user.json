@@ -1,17 +1,1 @@
-[
-  {
-    "firstName": "ken",
-    "lastName": "tseng",
-    "id": "1734853142422"
-  },
-  {
-    "firstName": "ken",
-    "lastName": "tseng",
-    "id": "1734853143885"
-  },
-  {
-    "firstName": "ken123123",
-    "lastName": "tseng123",
-    "id": "1734853150343"
-  }
-]
+[{"firstName":"ken","lastName":"tseng","id":"1734853142422"},{"firstName":"ken","lastName":"tseng","id":"1734853143885"},{"firstName":"ken123123","lastName":"tseng123","id":"1734853150343"},{"firstName":"kengreg","lastName":"tsengrger","id":"1734854682227"}]
