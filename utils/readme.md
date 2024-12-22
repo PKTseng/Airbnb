@@ -1,5 +1,3 @@
-好的，讓我詳細解釋這兩個函數的程式碼：
-
 ```typescript
 // 從檔案讀取使用者資料的函數
 const fetchUser = async () => {
