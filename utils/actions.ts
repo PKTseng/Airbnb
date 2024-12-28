@@ -37,7 +37,7 @@ export const createUser = async (prevState: FormState | null, formData: FormData
   }
 }
 
-export const fetchUser = async (): Promise<User[]> => {
+export const fetchUsers = async (): Promise<User[]> => {
   const result = await readFile('user.json', { encoding: 'utf-8' })
   const user = result ? JSON.parse(result) : []
 
@@ -45,7 +45,7 @@ export const fetchUser = async (): Promise<User[]> => {
 }
 
 export const saveUser = async (user: User) => {
-  const users = await fetchUser()
+  const users = await fetchUsers()
   users.push(user)
   await writeFile('user.json', JSON.stringify(users))
 }
@@ -69,3 +69,14 @@ export const demoCreateUser = async (prevState: DemoFormState | null, formData: 
   }
 }
 // ===以上簡單範例 查看 prevState 狀態===========
+
+//====================delete user====================
+export const deleteUser = async (formData: FormData) => {
+  const id = formData.get('id') as string
+  const users = await fetchUsers()
+
+  const updateUsers = users.filter((i) => i.id !== id)
+  await writeFile('user.json', JSON.stringify(updateUsers))
+  revalidatePath('/actions')
+}
+// export const removeUser = async (formData: User) => {}
