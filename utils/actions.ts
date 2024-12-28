@@ -8,16 +8,33 @@ export interface User {
   lastName: string
 }
 
-export const createUser = async (formData: FormData) => {
-  await new Promise((resolve) => setTimeout(resolve, 1500))
-  const firstName = formData.get('firstName') as string
-  const lastName = formData.get('lastName') as string
+interface FormState {
+  success?: boolean
+  message?: string
+}
 
-  // const rowData = Object.fromEntries(formData)
-  const newUser: User = { firstName, lastName, id: Date.now().toString() }
+export const createUser = async (prevState: FormState | null, formData: FormData): Promise<FormState> => {
+  console.log('prevState', prevState)
 
-  saveUser(newUser)
-  revalidatePath('/actions')
+  try {
+    const firstName = formData.get('firstName') as string
+    const lastName = formData.get('lastName') as string
+
+    const newUser = { firstName, lastName, id: Date.now().toString() }
+    await saveUser(newUser)
+
+    revalidatePath('/actions')
+
+    return {
+      success: true,
+      message: '使用者建立成功！',
+    }
+  } catch (error) {
+    return {
+      success: false,
+      message: '建立失敗：' + (error as Error).message,
+    }
+  }
 }
 
 export const fetchUser = async (): Promise<User[]> => {
@@ -32,3 +49,23 @@ export const saveUser = async (user: User) => {
   users.push(user)
   await writeFile('user.json', JSON.stringify(users))
 }
+
+// ===以下簡單範例 查看 prevState 狀態===========
+interface DemoFormState {
+  count: number
+  lastSubmission: string
+}
+
+export const demoCreateUser = async (prevState: DemoFormState | null, formData: FormData): Promise<DemoFormState> => {
+  // 印出前一次的狀態
+  console.log('Previous state:', prevState)
+
+  const firstName = formData.get('firstName') as string
+
+  return {
+    // 如果有前一次狀態，count +1；否則從 1 開始
+    count: (prevState?.count ?? 0) + 1,
+    lastSubmission: firstName,
+  }
+}
+// ===以上簡單範例 查看 prevState 狀態===========

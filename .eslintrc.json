@@ -25,6 +25,7 @@
     "comma-dangle": [
       "error",
       "always-multiline"
-    ]
+    ],
+    "@typescript-eslint/no-explicit-any": "off"
   }
 }

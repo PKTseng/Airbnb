@@ -1,10 +1,11 @@
 'use client'
 
-import { useFormStatus } from 'react-dom'
+import { useFormState, useFormStatus } from 'react-dom'
 import { createUser } from '@/utils/actions'
 
 const SubmitButton = () => {
   const { pending } = useFormStatus()
+
   return (
     <button type='submit' className={btnStyle} disabled={pending}>
       {pending ? 'Submitting' : 'Submit'}
@@ -13,12 +14,15 @@ const SubmitButton = () => {
 }
 
 function FormPage() {
+  const [state, formAction] = useFormState(createUser, null)
+
   return (
-    <form className={formStyle} action={createUser}>
+    <form className={formStyle} action={formAction}>
       <input type='text' name='firstName' defaultValue='ken' required className={inputStyle} />
       <input type='text' name='lastName' defaultValue='tseng' required className={inputStyle} />
-
       <SubmitButton />
+
+      {state?.message && <p className={state.success ? 'text-green-500' : 'text-red-500'}>{state.message}</p>}
     </form>
   )
 }
