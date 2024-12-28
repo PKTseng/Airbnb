@@ -79,4 +79,13 @@ export const deleteUser = async (formData: FormData) => {
   await writeFile('user.json', JSON.stringify(updateUsers))
   revalidatePath('/actions')
 }
-// export const removeUser = async (formData: User) => {}
+
+export const removeUser = async (id: string, formData: FormData) => {
+  const name = formData.get('name') as string
+  console.log('name', name)
+
+  const users = await fetchUsers()
+  const updatedUsers = users.filter((user) => user.id !== id)
+  await writeFile('user.json', JSON.stringify(updatedUsers))
+  revalidatePath('/actions')
+}

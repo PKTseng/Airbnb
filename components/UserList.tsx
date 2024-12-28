@@ -1,5 +1,6 @@
 import { fetchUsers } from '@/utils/actions'
 import DeleteButton from './DeleteButton'
+
 async function UserListPage() {
   const users = await fetchUsers()
 

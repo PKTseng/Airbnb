@@ -197,3 +197,75 @@ function DeleteButton({ id }: { id: string }) {
 - 如果是簡單的刪除操作，用原本的 hidden input 或 bind 方法就足夠
 - 如果需要更好的使用者體驗（如載入狀態），可以考慮 useTransition
 - 如果需要更複雜的錯誤處理，可以使用 API 呼叫的方式
+
+你的最新寫法很好！讓我解釋一下：
+
+1. 你目前的寫法（使用 bind）：
+
+```tsx
+function DeleteButton({ id }: { id: string }) {
+  return (
+    <form action={removeUser.bind(null, id)}>
+      <button type='submit'>delete</button>
+    </form>
+  )
+}
+```
+
+## Next.js 中推薦的現代寫法，因為：
+
+- 程式碼簡潔
+- 不需要額外的 hidden input
+- 直接通過參數傳遞資料
+- 符合 Server Actions 的設計理念
+
+1. 目前實務上常見的其他寫法：
+
+```tsx
+// 方法 1: 使用 useTransition（客戶端狀態管理）
+'use client'
+function DeleteButton({ id }: { id: string }) {
+  const [isPending, startTransition] = useTransition()
+
+  return (
+    <button onClick={() => startTransition(() => removeUser(id))} disabled={isPending}>
+      {isPending ? 'Deleting...' : 'Delete'}
+    </button>
+  )
+}
+
+// 方法 2: 使用 API Routes
+async function DeleteButton({ id }: { id: string }) {
+  const deleteUser = async () => {
+    await fetch(`/api/users/${id}`, { method: 'DELETE' })
+  }
+  return <button onClick={deleteUser}>Delete</button>
+}
+```
+
+比較：
+
+1. 你的寫法（Server Actions + bind）：
+   - ✅ 程式碼最簡潔
+   - ✅ 不需要 client-side JavaScript
+   - ✅ 完全在伺服器端執行
+   - ✅ 自動處理重新驗證
+2. useTransition 寫法：
+
+   - ✅ 可以顯示載入狀態
+   - ❌ 需要更多程式碼
+   - ❌ 需要 client-side JavaScript
+
+3. API Routes 寫法：
+   - ✅ RESTful API 風格
+   - ❌ 需要額外設置 API 路由
+   - ❌ 需要處理錯誤狀態
+
+結論：
+
+- 你現在的寫法是 Next.js 13+ 中最推薦的方式
+- 它利用了 Server Actions 的優勢
+- 程式碼簡潔易懂
+- 效能好（不需要客戶端 JavaScript）
+
+如果你不需要特別的客戶端狀態管理（如載入狀態），現在這種寫法是最好的選擇！
