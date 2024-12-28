@@ -1,3 +1,55 @@
+讓我解釋 `dispatch` 的概念：
+
+在 `useFormState` 中的 `dispatch` 其實就是一個「傳遞者」，它的工作是：
+
+1. 收集表單數據
+2. 把數據送給我們定義的 `loginAction` 函數處理
+3. 更新表單狀態
+
+讓我用更簡單的例子說明：
+
+```jsx
+// 1. 首先我們定義一個處理函數
+async function handleSubmit(prevState, formData) {
+  // 從表單拿到輸入的名字
+  const name = formData.get('name')
+  return `你好，${name}！` // 返回打招呼的文字
+}
+
+function NameForm() {
+  // 2. useFormState 會給我們兩個東西：
+  // - state：目前的狀態（handleSubmit 返回的結果）
+  // - dispatch：幫我們把表單數據送給 handleSubmit 的傳遞者
+  const [state, dispatch] = useFormState(handleSubmit, null)
+
+  return (
+    // 3. 把 dispatch 放在 form 的 action 中
+    // 這樣當表單提交時，dispatch 就會：
+    // - 收集表單數據
+    // - 把數據送給 handleSubmit
+    // - 把 handleSubmit 的結果存在 state 中
+    <form action={dispatch}>
+      <input name='name' />
+      <button>送出</button>
+
+      {/* 4. 顯示打招呼的文字 */}
+      {state && <p>{state}</p>}
+    </form>
+  )
+}
+```
+
+如果用生活化的例子來說：
+
+- `dispatch` 就像是一個服務生
+- 當客人（使用者）填完表單按送出
+- 服務生（dispatch）就會：
+  1. 收集客人點的餐（表單數據）
+  2. 把訂單送到廚房（handleSubmit）
+  3. 把做好的餐點（處理結果）送回給客人（更新 state）
+
+這樣解釋是否比較容易理解了？
+
 讓我詳細說明這兩個從 'react-dom' 引入的 hooks：
 
 `useFormStatus`:
